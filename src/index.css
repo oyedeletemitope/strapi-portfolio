@@ -1,0 +1,109 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    color: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+.iphone {
+    padding: 4em 3em;
+    width: calc(50% - 2em);
+}
+
+.iphone .title {
+    color: orange;
+    font-size: 3em;
+    margin-bottom: .5em;
+}
+
+.iphone.text {
+    letter-spacing: 1px;
+    line-height: 1.5;
+    color: rgb(226, 208, 208);
+    margin-bottom: 1em;
+}
+
+.btn {
+    background: rgb(194, 189, 181);
+    color: #fff;
+    padding: .5em 1em;
+    border-radius: 3px;
+    text-decoration: none;
+    font-size: 1em;
+    margin-top: 1em;
+    border: none;
+    margin-right: .5em;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 1px;
+
+}
+
+.pricing h1 {
+    text-align: center;
+    font-size: 2.5em;
+
+}
+
+.pricing-table {
+    padding: 3em;
+    display: flex;
+    flex-direction: row;
+}
+
+.pricing-card {
+    background-color: rgba(255, 255, 255, .3);
+    padding: 1em;
+    border-radius: 5px;
+    transform: translate(-100px, 100px);
+    opacity: 0;
+    animation: 1s slideIn;
+    animation-delay: 2s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes slideIn {
+    to {
+        transform: translate(0, 0);
+        opacity: 1;
+    }
+
+}
+
+.pricing-card:nth-child(2) {
+    margin: 0 2.5em;
+    transform: translate(0, 100px);
+    animation-delay: 2.2s;
+}
+
+.pricing-card:nth-child(3) {
+
+    transform: translate(100px, 100px);
+    animation-delay: 2.4s;
+}
+
+.pricing-card .title {
+    font-size: 1.5em;
+    color: #fff;
+    font-weight: bold;
+
+}
+
+.pricing-card .info {
+    margin: 1em 0;
+}
+
+.pricing-card .btn {
+    background: orange;
+
+}
