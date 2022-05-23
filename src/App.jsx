@@ -4,13 +4,12 @@ import { useState, useEffect } from "react";
 import * as component from "./component";
 
 function App() {
-  const [portfolio, setPortfolio] = useState({});
   const [portfolios, setPortfolios] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
       const result = await component.readPortfolios();
-      setPortfolios(result.data);
-      console.log(result);
+      setPortfolios(result.data.data);
+      console.log(result.data);
     };
     fetchData();
     const scene = new THREE.Scene();
@@ -78,7 +77,9 @@ function App() {
 
     scene.add(avatar);
 
-    const planetTexture = new THREE.TextureLoader().load("/../planet.jpg");
+    const planetTexture = new THREE.TextureLoader().load(
+      "/../mercury/scene.gltf"
+    );
 
     const planet = new THREE.Mesh(
       new THREE.SphereGeometry(3, 32, 32),
@@ -121,61 +122,54 @@ function App() {
   }, []);
   return (
     <div className="App">
-      {portfolios.map((portfolio, i) => (
-        <h1 className="title" key={i}>
-          {portfolio.myname}
-        </h1>
-      ))}
-      <canvas id="bg"></canvas>
-
-      <div>
-        <div className="iphone">
-          <h1 className="title"></h1>
-          <p className="text">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
-          </p>
-          <p>
-            <button className="btn">ENGLISH</button>
-            <button className="btn">RUSSIAN</button>
-          </p>
-        </div>
-        <div className="pricing">
-          <h1>Features</h1>
-          <div className="pricing-table">
-            <div className="pricing-card">
-              <p className="title">Basic</p>
-              <p className="info">
-                Lorem ipsum dolor sit amet, c sed do eiusmod tempor incididunt
-                ut labore et dolore magna aliqua.{" "}
+      {portfolios.length > 0 ? (
+        portfolios.map((portfolio, i) => (
+          <div className="title" key={i}>
+            <div className="portfolio">
+              <h1 className="title"> {portfolio.attributes.myname}</h1>
+              <p className="text">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+                sunt in culpa qui officia deserunt mollit anim id est laborum.
               </p>
-              <button className="btn">GET IT NOW</button>
             </div>
+            <div className="projects">
+              <h1>Projects</h1>
+              <div className="projects-table">
+                <div className="projects-card">
+                  <p className="title">Porject1</p>
+                  <p className="info">
+                    {portfolio.attributes.projectdescription}
+                  </p>
+                  <button className="btn">check it out here</button>
+                </div>
 
-            <div className="pricing-card">
-              <p className="title">Basic</p>
-              <p className="info">
-                Lorem ipsum dolor sit amet, con sed do eiusmod tempor incididunt
-                ut labore et dolore magna aliqua.
-              </p>
-              <button className="btn">GET IT NOW</button>
-            </div>
-            <div className="pricing-card">
-              <p className="title">Basic</p>
-              <p className="info">
-                Lorem ipsum dolor sit amet, cons sed do eiusmod tempor
-                incididunt ut labore et dolore magna aliqua.
-              </p>
-              <button className="btn">GET IT NOW</button>
+                <div className="projects-card">
+                  <p className="title">project2</p>
+                  <p className="info">
+                    {portfolio.attributes.projectdescription}
+                  </p>
+                  <button className="btn">check it out here</button>
+                </div>
+                <div className="projects-card">
+                  <p className="title">project3</p>
+                  <p className="info">
+                    {portfolio.attributes.projectdescription}
+                  </p>
+                  <button className="btn">check it out here</button>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
+        ))
+      ) : (
+        <h2></h2>
+      )}
+      <canvas id="bg"></canvas>
     </div>
   );
 }
